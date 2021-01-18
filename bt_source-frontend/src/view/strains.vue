@@ -1,6 +1,4 @@
 <template>
-    <div>strain is here</div>
-
     <china-map></china-map>
 </template>
 

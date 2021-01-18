@@ -1,5 +1,5 @@
 <template>
-  <div id="main" >这是一个中国地图</div>
+  <div id="main" ></div>
 </template>
 
 <script>
@@ -20,7 +20,7 @@
       myEcharts() {
           axios.get('/js/china.json').then(response =>{
           console.log(response.data);
-          let myChart = echarts.init(document.getElementById('main'));
+          let myChart = echarts.init(document.getElementById('main'),{renderer: 'svg'});
           console.log("get in ");
           echarts.registerMap('china', response.data);
           myChart.setOption({
@@ -33,20 +33,20 @@
               trigger: 'item',
               formatter: '{b}<br/>{c} '
             },
-            toolbox: {
-              show: true,
-              orient: 'vertical',
-              left: 'right',
-              top: 'center',
-              feature: {
-                dataView: {readOnly: false},
-                restore: {},
-                saveAsImage: {}
-              }
-            },
+            /* toolbox: {
+               show: true,
+               orient: 'vertical',
+               left: 'right',
+               top: 'center',
+               feature: {
+                 dataView: {readOnly: false},
+                 restore: {},
+                 saveAsImage: {}
+               }
+             },*/
             visualMap: {
               min: 0,
-              max: 500,
+              max: 700,
               text: ['High', 'Low'],
               realtime: false,
               calculable: true,
@@ -60,44 +60,50 @@
                 type: 'map',
                 mapType: 'china', // 自定义扩展图表类型
                 label: {
-                  show: true
+                  normal: {
+                    show: true,
+                    textStyle: {
+                      fontSize: 12,
+                    }
+                  }
                 },
                 data: [
-                  {name: '北京市', value: Math.round(Math.random() * 500)},
-                  {name: '天津市', value: Math.round(Math.random() * 500)},
-                  {name: '上海市', value: Math.round(Math.random() * 500)},
-                  {name: '重庆市', value: Math.round(Math.random() * 500)},
-                  {name: '河北省', value: Math.round(Math.random() * 500)},
-                  {name: '河南省', value: Math.round(Math.random() * 500)},
-                  {name: '云南省', value: Math.round(Math.random() * 500)},
-                  {name: '辽宁省', value: Math.round(Math.random() * 500)},
-                  {name: '黑龙江省', value: Math.round(Math.random() * 500)},
-                  {name: '湖南省', value: Math.round(Math.random() * 500)},
-                  {name: '安徽省', value: Math.round(Math.random() * 500)},
-                  {name: '山东省', value: Math.round(Math.random() * 500)},
-                  {name: '新疆维吾尔自治区', value: Math.round(Math.random() * 500)},
-                  {name: '江苏省', value: Math.round(Math.random() * 500)},
-                  {name: '浙江省', value: Math.round(Math.random() * 500)},
-                  {name: '江西省', value: Math.round(Math.random() * 500)},
-                  {name: '湖北省', value: Math.round(Math.random() * 500)},
-                  {name: '广西壮族自治区', value: Math.round(Math.random() * 500)},
-                  {name: '甘肃省', value: Math.round(Math.random() * 500)},
-                  {name: '山西省', value: Math.round(Math.random() * 500)},
-                  {name: '内蒙古自治区', value: Math.round(Math.random() * 500)},
-                  {name: '陕西省', value: Math.round(Math.random() * 500)},
-                  {name: '吉林省', value: Math.round(Math.random() * 500)},
-                  {name: '福建省', value: Math.round(Math.random() * 500)},
-                  {name: '贵州省', value: Math.round(Math.random() * 500)},
-                  {name: '广东省', value: Math.round(Math.random() * 500)},
-                  {name: '青海省', value: Math.round(Math.random() * 500)},
-                  {name: '西藏自治区', value: Math.round(Math.random() * 500)},
-                  {name: '四川省', value: Math.round(Math.random() * 500)},
-                  {name: '宁夏回族自治区', value: Math.round(Math.random() * 500)},
-                  {name: '海南省', value: Math.round(Math.random() * 500)},
-                  {name: '台湾省', value: Math.round(Math.random() * 500)},
-                  {name: '香港特别行政区', value: Math.round(Math.random() * 500)},
-                  {name: '澳门特别行政区', value: Math.round(Math.random() * 500)},
-                  {name: '南海诸岛', value: Math.round(Math.random() * 500)}
+                  {name: '北京', value: Math.round(Math.random() * 500)},
+                  {name: '天津', value: Math.round(Math.random() * 500)},
+                  {name: '上海', value: Math.round(Math.random() * 500)},
+                  {name: '重庆', value: Math.round(Math.random() * 500)},
+                  {name: '河北', value: Math.round(Math.random() * 500)},
+                  {name: '河南', value: Math.round(Math.random() * 500)},
+                  {name: '云南', value: Math.round(Math.random() * 500)},
+                  {name: '辽宁', value: Math.round(Math.random() * 500)},
+                  {name: '黑龙江', value: Math.round(Math.random() * 500)},
+                  {name: '湖南', value: Math.round(Math.random() * 500)},
+                  {name: '安徽', value: Math.round(Math.random() * 500)},
+                  {name: '山东', value: Math.round(Math.random() * 500)},
+                  {name: '新疆', value: Math.round(Math.random() * 500)},
+                  {name: '江苏', value: Math.round(Math.random() * 500)},
+                  {name: '浙江', value: Math.round(Math.random() * 500)},
+                  {name: '江西', value: Math.round(Math.random() * 500)},
+                  {name: '湖北', value: Math.round(Math.random() * 500)},
+                  {name: '广西', value: Math.round(Math.random() * 500)},
+                  {name: '甘肃', value: Math.round(Math.random() * 500)},
+                  {name: '山西', value: Math.round(Math.random() * 500)},
+                  {name: '内蒙古', value: Math.round(Math.random() * 500)},
+                  {name: '陕西', value: Math.round(Math.random() * 500)},
+                  {name: '吉林', value: Math.round(Math.random() * 500)},
+                  {name: '福建', value: Math.round(Math.random() * 500)},
+                  {name: '贵州', value: Math.round(Math.random() * 500)},
+                  {name: '广东', value: Math.round(Math.random() * 500)},
+                  {name: '青海', value: Math.round(Math.random() * 500)},
+                  {name: '西藏', value: Math.round(Math.random() * 500)},
+                  {name: '四川', value: Math.round(Math.random() * 500)},
+                  {name: '宁夏', value: Math.round(Math.random() * 500)},
+                  {name: '海南', value: Math.round(Math.random() * 500)},
+                  {name: '台湾', value: Math.round(Math.random() * 500)},
+                  {name: '香港', value: Math.round(Math.random() * 500)},
+                  {name: '澳门', value: Math.round(Math.random() * 500)},
+                  {name: '南海诸岛', value: Math.round(Math.random() * 500)},
+                  {name: '钓鱼岛', value: Math.round(Math.random() * 500)}
                 ],
                 // 自定义名称映射
               }
@@ -113,10 +119,10 @@
 
 <style scoped>
   #main {
-    width: 1000px;
-    height: 800px;
+    width: 800px;
+    height: 600px;
     position: absolute;
     left: calc(50% - 500px);
-    top: 100px;
+    top: 30px;
   }
 </style>
